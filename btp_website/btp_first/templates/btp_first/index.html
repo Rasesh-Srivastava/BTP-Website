@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binary Game</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'btp_first/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Binary Game</h1>
+
+        <!-- Rules Section -->
+        <div class="rules-payoff">
+            <div class="rules">
+                <h2>Rules</h2>
+                <p>
+                    1. Players must choose between options A or B.<br>
+                    2. Each round, the same question will be asked for {{ num_iterations }} iterations.<br>
+                    3. Scores depend on the payoff matrix:<br>
+                </p>
+            </div>
+
+            <!-- Payoff Matrix -->
+            <div class="payoff-matrix">
+                <h3>Payoff Matrix</h3>
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>Player 2: A</th>
+                        <th>Player 2: B</th>
+                    </tr>
+                    <tr>
+                        <th>Player 1: A</th>
+                        <td>({{ a_value }}, 1)</td>
+                        <td>(0, 0)</td>
+                    </tr>
+                    <tr>
+                        <th>Player 1: B</th>
+                        <td>(0, 0)</td>
+                        <td>(1, {{ a_value }})</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- Question Section -->
+        <div class="question-options">
+            <div class="question">
+                <h2>Question</h2>
+                <p>{{ question }}</p>
+            </div>
+            <div class="options">
+                <h3>Options:</h3>
+                <ul>
+                    <li>{{ options.0 }}</li>
+                    <li>{{ options.1 }}</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        {% if not restart %}
+            <form method="post" class="player-form">
+                {% csrf_token %}
+                <div class="form-fields">
+                    <label for="id_player1">Player 1:</label>
+                    <input type="password" name="player1" placeholder="Enter A or B" required>
+                    <label for="id_player2">Player 2:</label>
+                    <input type="password" name="player2" placeholder="Enter A or B" required>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        {% endif %}
+
+        <!-- Previous Responses Section -->
+        {% if choices_list %}
+            <div class="previous-responses">
+                <h2>Previous Responses</h2>
+                <table>
+                    <tr>
+                        <th>Player 1</th>
+                        <td>
+                            {% for choice in choices_list %}
+                                {{ choice.0 }}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Player 2</th>
+                        <td>
+                            {% for choice in choices_list %}
+                                {{ choice.1 }}
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        {% endif %}
+
+        <!-- Final Scores -->
+        {% if restart %}
+            <div class="final-scores">
+                <h2>Final Scores</h2>
+                <p>Player 1: {{ player1_scores }}</p>
+                <p>Player 2: {{ player2_scores }}</p>
+            </div>
+        {% endif %}
+
+        <!-- Message and Restart Section -->
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+        {% if restart %}
+            <form method="get" action="{% url 'restart' %}">
+                <button type="submit" class="btn">Restart Game</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>

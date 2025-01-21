@@ -1,0 +1,6 @@
+Player 1: A A B B A 
+Player 2: A B A B A 
+Player 1: 5, Player 2: 4
+Player 1: B A B A B 
+Player 2: B B A A B 
+Player 1: 4, Player 2: 5

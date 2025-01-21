@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Rules and Payoff Matrix */
+.rules-payoff {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.rules, .payoff-matrix {
+    width: 48%;
+    text-align: left;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Question and Options */
+.question-options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.options ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.options li {
+    margin: 5px 0;
+}
+
+/* Form Fields */
+.player-form {
+    margin-top: 20px;
+}
+
+.form-fields {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.form-fields label {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+/* Previous Responses */
+.previous-responses table {
+    width: 100%;
+    margin-top: 20px;
+    border: none;
+    text-align: left;
+}
+
+.previous-responses th {
+    text-align: left;
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
